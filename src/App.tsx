@@ -5,6 +5,7 @@ import { Input } from "./components/input";
 import { Button } from "./components/button";
 import { Letter } from "./components/letter";
 import { Header } from "./components/header";
+import { LettersUsed } from "./components/letters-used";
 
 function App() {
   function handleRestartGame() {
@@ -32,6 +33,8 @@ function App() {
           <Input autoFocus maxLength={1} placeholder="?" />
           <Button title="Confirmar" />
         </div>
+
+        <LettersUsed />
       </main>
     </div>
   );
