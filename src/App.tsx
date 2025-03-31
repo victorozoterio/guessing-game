@@ -1,4 +1,7 @@
 import styles from "./app.module.css";
+import { useEffect, useState } from "react";
+
+import { WORDS, Challenge } from "./utils/words";
 
 import { Tip } from "./components/tip";
 import { Input } from "./components/input";
@@ -7,15 +10,32 @@ import { Letter } from "./components/letter";
 import { Header } from "./components/header";
 import { LettersUsed } from "./components/letters-used";
 
-function App() {
+export default function App() {
+  const [attempts, setAttempts] = useState(0);
+  const [letter, setLetter] = useState("");
+  const [challenge, setChallenge] = useState<Challenge | null>(null);
+
   function handleRestartGame() {
     alert("Reiniciar o jogo!");
   }
 
+  function startGame() {
+    const index = Math.floor(Math.random() * WORDS.length);
+    const randomWord = WORDS[index];
+
+    setChallenge(randomWord);
+    setAttempts(0);
+    setLetter("");
+  }
+
+  useEffect(() => {
+    startGame();
+  }, []);
+
   return (
     <div className={styles.container}>
       <main>
-        <Header current={5} max={10} onRestart={handleRestartGame} />
+        <Header current={attempts} max={10} onRestart={handleRestartGame} />
 
         <Tip tip="Uma das linguagem de programação mais utilizadas" />
 
@@ -39,5 +59,3 @@ function App() {
     </div>
   );
 }
-
-export default App;
