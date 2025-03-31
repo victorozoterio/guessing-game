@@ -10,6 +10,8 @@ import { Letter } from "./components/letter";
 import { Header } from "./components/header";
 import { LettersUsed, LettersUsedProps } from "./components/letters-used";
 
+const MAX_ATTEMPTS = 5;
+
 export default function App() {
   const [score, setScore] = useState(0);
   const [letter, setLetter] = useState("");
@@ -72,7 +74,11 @@ export default function App() {
   return (
     <div className={styles.container}>
       <main>
-        <Header current={score} max={10} onRestart={handleRestartGame} />
+        <Header
+          current={lettersUsed.length}
+          max={challenge.word.length + MAX_ATTEMPTS}
+          onRestart={handleRestartGame}
+        />
 
         <Tip tip={challenge.tip} />
 
