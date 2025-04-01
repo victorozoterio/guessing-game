@@ -15,7 +15,6 @@ const MAX_ATTEMPTS = 5;
 export default function App() {
   const [score, setScore] = useState(0);
   const [letter, setLetter] = useState("");
-  const [attempts, setAttempts] = useState(0);
   const [lettersUsed, setLettersUsed] = useState<LettersUsedProps[]>([]);
   const [challenge, setChallenge] = useState<Challenge | null>(null);
 
@@ -33,9 +32,9 @@ export default function App() {
     const index = Math.floor(Math.random() * WORDS.length);
     const randomWord = WORDS[index];
 
-    setChallenge(randomWord);
-    setAttempts(0);
+    setScore(0);
     setLetter("");
+    setChallenge(randomWord);
   }
 
   function handleConfirm() {
